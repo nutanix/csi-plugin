@@ -1,0 +1,12 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+   name: claim2
+spec:
+   accessModes:
+      - ReadWriteMany
+   resources:
+      requests:
+         storage: 30Gi
+   storageClassName: acs-afs
+

@@ -1,0 +1,8 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+    name: acs-afs
+provisioner: com.nutanix.csi
+parameters:
+    nfsServer: 10.51.11.8
+    nfsPath: nfs-test-path

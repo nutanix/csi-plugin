@@ -1,0 +1,13 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+    name: acs-abs
+provisioner: com.nutanix.csi
+parameters:
+    csiProvisionerSecretName: ntnx-secret
+    csiProvisionerSecretNamespace: default
+    csiNodePublishSecretName: ntnx-secret
+    csiNodePublishSecretNamespace: default
+    dataServiceEndPoint: 10.40.144.216
+    storageContainer: default-container-84242740336979
+    fsType: ext4
