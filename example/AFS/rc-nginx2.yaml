@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: server2
+spec:
+  replicas: 1
+  selector:
+    role: server
+  template:
+    metadata:
+      labels:
+        role: server
+    spec:
+      securityContext:
+        runAsUser: 200
+      containers:
+      - name: server
+        image: bitnami/nginx
+        volumeMounts:
+          - mountPath: /var/lib/www/html
+            name: mypvc
+      volumes:
+        - name: mypvc
+          persistentVolumeClaim:
+            claimName: claim2
+
