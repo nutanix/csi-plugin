@@ -6,3 +6,4 @@ provisioner: com.nutanix.csi
 parameters:
     nfsServer: 10.51.11.8
     nfsPath: nfs-test-path
+    storageType: NutanixFiles
