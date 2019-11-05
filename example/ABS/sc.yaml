@@ -4,11 +4,15 @@ metadata:
     name: acs-abs
 provisioner: com.nutanix.csi
 parameters:
-    csiProvisionerSecretName: ntnx-secret
-    csiProvisionerSecretNamespace: default
-    csiNodePublishSecretName: ntnx-secret
-    csiNodePublishSecretNamespace: default
-    dataServiceEndPoint: 10.40.144.216
-    storageContainer: default-container-84242740336979
-    fsType: ext4
+    csi.storage.k8s.io/provisioner-secret-name: ntnx-secret
+    csi.storage.k8s.io/provisioner-secret-namespace: kube-system
+    csi.storage.k8s.io/node-publish-secret-name: ntnx-secret
+    csi.storage.k8s.io/node-publish-secret-namespace: kube-system
+    csi.storage.k8s.io/controller-expand-secret-name: ntnx-secret
+    csi.storage.k8s.io/controller-expand-secret-namespace: kube-system
+    csi.storage.k8s.io/fstype: ext4
+    dataServiceEndPoint: 10.5.65.156:3260
+    storageContainer: default-container-30293
     storageType: NutanixVolumes
+allowVolumeExpansion: true
+reclaimPolicy: Delete
