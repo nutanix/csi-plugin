@@ -11,3 +11,4 @@ parameters:
     dataServiceEndPoint: 10.40.144.216
     storageContainer: default-container-84242740336979
     fsType: ext4
+    storageType: NutanixVolumes
