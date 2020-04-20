@@ -17,7 +17,7 @@ spec:
       labels:
         app: csi-node-ntnx-plugin
     spec:
-      serviceAccount: csi-node-ntnx-plugin
+      serviceAccountName: csi-node-ntnx-plugin
       hostNetwork: true
       containers:
         - name: driver-registrar
