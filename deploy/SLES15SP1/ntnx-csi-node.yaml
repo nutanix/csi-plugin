@@ -40,12 +40,12 @@ spec:
               mountPath: /csi/
             - name: registration-dir
               mountPath: /registration
-        - name: csi-node-ntnx-plugin 
+        - name: csi-node-ntnx-plugin
           securityContext:
             privileged: true
             allowPrivilegeEscalation: true
           image: ntnx/ntnx-csi:v1.1.1
-          args :
+          args:
             - "--endpoint=$(CSI_ENDPOINT)"
             - "--nodeid=$(NODE_ID)"
           env:
@@ -55,6 +55,8 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
+            - name: LD_LIBRARY_PATH
+              value: /iscsiadmroot/lib64:/iscsiadmroot/usr/lib64:$LD_LIBRARY_PATH
           volumeMounts:
             - name: plugin-dir
               mountPath: /csi
@@ -65,14 +67,16 @@ spec:
               mountPropagation: "Bidirectional"
             - mountPath: /dev
               name: device-dir
+            - mountPath: /lib/modules
+              name: lib-dir
             - mountPath: /etc/iscsi
               name: iscsi-dir
             - mountPath: /sbin/iscsiadm
               name: iscsiadm
-            - mountPath: /lib/modules
-              name: lib-dir
-            - mountPath: /usr/lib64/libisns-nocrypto.so.0
-              name: ubuntu-lib
+            - mountPath: /iscsiadmroot
+              name: iscsiadmroot
+            - mountPath: /lib64/ld-linux-x86-64.so.2
+              name: ld-linux
           ports:
             - containerPort: 9808
               name: healthz
@@ -121,8 +125,14 @@ spec:
           hostPath:
             path: /lib/modules
             type: Directory
-        - name: ubuntu-lib
+        - name: iscsiadm
           hostPath:
-            path: /lib/x86_64-linux-gnu/libisns-nocrypto.so.0
+            path: /sbin/iscsiadm
             type: File
-
+        - name: iscsiadmroot
+          hostPath:
+            path: /
+            type: Directory
+        - name: ld-linux
+          hostPath:
+            path:  /lib64/ld-linux-x86-64.so.2

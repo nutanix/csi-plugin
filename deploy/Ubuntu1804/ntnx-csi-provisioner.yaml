@@ -19,7 +19,7 @@ spec:
       labels:
         app: csi-provisioner-ntnx-plugin
     spec:
-      serviceAccount: csi-provisioner
+      serviceAccountName: csi-provisioner
       containers:
       - name: csi-provisioner
         image: quay.io/k8scsi/csi-provisioner:v1.3.0
