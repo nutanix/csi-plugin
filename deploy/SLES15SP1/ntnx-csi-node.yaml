@@ -125,10 +125,6 @@ spec:
           hostPath:
             path: /lib/modules
             type: Directory
-        - name: iscsiadm
-          hostPath:
-            path: /sbin/iscsiadm
-            type: File
         - name: iscsiadmroot
           hostPath:
             path: /
