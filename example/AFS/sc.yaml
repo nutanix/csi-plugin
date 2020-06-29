@@ -4,6 +4,5 @@ metadata:
     name: acs-afs
 provisioner: com.nutanix.csi
 parameters:
-    nfsServer: 10.51.11.8
-    nfsPath: nfs-test-path
-    storageType: NutanixFiles
+    nfsServer: 10.25.198.109
+    nfsPath: nfs-user1

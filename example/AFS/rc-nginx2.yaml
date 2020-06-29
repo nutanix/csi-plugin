@@ -11,11 +11,9 @@ spec:
       labels:
         role: server
     spec:
-      securityContext:
-        runAsUser: 200
       containers:
       - name: server
-        image: bitnami/nginx
+        image: nginx
         volumeMounts:
           - mountPath: /var/lib/www/html
             name: mypvc
