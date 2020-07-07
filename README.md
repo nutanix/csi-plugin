@@ -18,7 +18,7 @@ New features:
 4. Liveness Probe
 
 ## Nutanix CSI driver v2.0.0 documentation
-Todo: Add documentation link
+https://portal.nutanix.com/page/documents/details?targetId=CSI-Volume-Driver-v2_0:CSI-Volume-Driver-v2_0
 
 New features:
 1. Volume clone
