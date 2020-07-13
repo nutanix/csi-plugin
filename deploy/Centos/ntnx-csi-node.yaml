@@ -17,7 +17,7 @@ spec:
       labels:
         app: csi-node-ntnx-plugin
     spec:
-      serviceAccountName: csi-node-ntnx-plugin
+      serviceAccount: csi-node-ntnx-plugin
       hostNetwork: true
       containers:
         - name: driver-registrar
@@ -44,7 +44,7 @@ spec:
           securityContext:
             privileged: true
             allowPrivilegeEscalation: true
-          image: ntnx/ntnx-csi:v1.1.1
+          image: ntnx/ntnx-csi:v2.0.0
           args :
             - "--endpoint=$(CSI_ENDPOINT)"
             - "--nodeid=$(NODE_ID)"

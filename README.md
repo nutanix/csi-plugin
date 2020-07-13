@@ -16,3 +16,10 @@ New features:
 2. Volume Expansion
 3. CSIDriver Object
 4. Liveness Probe
+
+## Nutanix CSI driver v2.0.0 documentation
+https://portal.nutanix.com/page/documents/details?targetId=CSI-Volume-Driver-v2_0:CSI-Volume-Driver-v2_0
+
+New features:
+1. Volume clone
+2. Volume snapshot and Restore
