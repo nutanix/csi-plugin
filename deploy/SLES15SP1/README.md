@@ -26,12 +26,12 @@ There is no need to install NFS client package on each worker node, because `ntn
 4. `kubectl apply -f ntnx-csi-provisioner.yaml`
 * Verify: `kubectl get statefulset -n kube-system | grep csi`
 5. `kubectl apply -f csi-driver.yaml`
-6. Set the PRISM_LOGIN variable with the base64 hash of the Prism login information in the form of "<PrismIP>:<port, normally 9440>:<username>:<password>": 
+6. Set the PRISM_LOGIN variable with the base64 hash of the Prism login information in the form of `"<PrismIP>:<port, normally 9440>:<username>:<password>"`  
 * I.e. `export PRISM_LOGIN=$(echo -n "10.10.10.10:9440:admin:p@ssw0rd" | base64)`
 7. Update the ntnx-secret.yaml file with the login hash: `sed  -i "s/key:.*/key: ${PRISM_LOGIN}/" ntnx-secret.yaml`
 8. `kubectl apply -f ntnx-secret.yaml`
-* Verify: `kubectl get secret -n kube-system | grep ntnx-secret`
-9: Update the ntnx-volume-storage-class.yaml file to match your environment (Hint: Comments in the file should help find the relevant information)
+* Verify: `kubectl get secret -n kube-system | grep ntnx-secret`  
+9. Update the ntnx-volume-storage-class.yaml file to match your environment (Hint: Comments in the file should help find the relevant information)
 10. `kubectl apply -f ntnx-volume-storage-class.yaml`
 * Verify: `kubectl get storageclass`
 	* Take note if the acs-abs storageClass is the default
