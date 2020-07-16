@@ -18,9 +18,9 @@ There is no need to install NFS client package on each worker node, because `ntn
 1. `kubectl apply -f ntnx-csi-psp.yaml`
 2. `kubectl apply -f ntnx-csi-rbac.yaml`
 * Verify:  
-..* `kubectl get serviceaccounts -n kube-system | grep csi`
-..* `kubectl get clusterrole -n kube-system | egrep "csi|runner"`
-..* `kubectl get clusterrolebinding -n kube-system | grep csi`
+	* `kubectl get serviceaccounts -n kube-system | grep csi`
+	* `kubectl get clusterrole -n kube-system | egrep "csi|runner"`
+	* `kubectl get clusterrolebinding -n kube-system | grep csi`
 3. `kubectl apply -f ntnx-csi-node.yaml`
 * Verify: `kubectl get daemonset -n kube-system | grep csi`
 4. `kubectl apply -f ntnx-csi-provisioner.yaml`
@@ -34,7 +34,7 @@ There is no need to install NFS client package on each worker node, because `ntn
 9: Update the ntnx-volume-storage-class.yaml file to match your environment (Hint: Comments in the file should help find the relevant information)
 10. `kubectl apply -f ntnx-volume-storage-class.yaml`
 * Verify: `kubectl get storageclass`
-..* Take note if the acs-abs storageClass is the default
+	* Take note if the acs-abs storageClass is the default
 11. Test that a PV/PVC can be created via the new storageClas (Hint: Comment out the "storageClassName: acs-abs" line to test the default storageClass): `kubectl apply -f test-pvc.yaml`
 * Verify: `kubectl get pvc`
 12. After the PVC shows a STATUS of "Bound", create a test pod to mount the PVC: `kubectl apply -f test-pod.yaml`
