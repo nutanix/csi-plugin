@@ -2,7 +2,7 @@ kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
     name: acs-abs
-# Uncomment the following two lines to make this the default storage class
+### Uncomment the following two lines to make this the default storage class
 #    annotations:
 #      storageclass.kubernetes.io/is-default-class: "true"
 provisioner: com.nutanix.csi
@@ -15,10 +15,10 @@ parameters:
     csi.storage.k8s.io/controller-expand-secret-name: ntnx-secret
     csi.storage.k8s.io/controller-expand-secret-namespace: kube-system
     csi.storage.k8s.io/fstype: ext4
-# dataServiceEndPoint IP is found in the Prisim UI under Settings -> Cluster Details
+# dataServiceEndPoint IP is found in the Prisim UI under Settings -> Cluster Details "iSCSI Data Services IP"
 # dataServiceEndPoint port is the port used for iSCSI, normally 3260
     dataServiceEndPoint: <IP>:<port>
-# storageContainer name is found in the Prisim UI under Storage -> Storage Containers (use the search box, as needed)
+# storageContainer name is found in the Prisim UI under Storage -> Storage Container (use the search box, as needed)
     storageContainer: <Storage Container Name>
     storageType: NutanixVolumes
 allowVolumeExpansion: true
