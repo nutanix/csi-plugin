@@ -1,8 +1,10 @@
 apiVersion: policy/v1beta1
 kind: PodSecurityPolicy
 metadata:
-    name: ntnx-csi-psp
+  name: ntnx-csi-psp
 spec:
+  privileged: true
+  allowPrivilegeEscalation: true
   allowedHostPaths:
   - pathPrefix: /var/lib/kubelet/plugins_registry/
   - pathPrefix: /var/lib/kubelet/plugins/com.nutanix.csi/
@@ -13,11 +15,20 @@ spec:
   - pathPrefix: /lib/modules
   - pathPrefix: /
   - pathPrefix: /lib64/ld-linux-x86-64.so.2
-  hostNetwork: true
-  privileged: true
-  allowPrivilegeEscalation: true 
   volumes:
   - hostPath
   - secret
   - configMap
   - emptyDir
+  hostNetwork: true
+  hostPorts:
+  - min: 9808
+    max: 9808
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: RunAsAny
+  runAsUser:
+    rule: RunAsAny
+  fsGroup:
+    rule: RunAsAny
