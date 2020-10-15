@@ -23,3 +23,9 @@ https://portal.nutanix.com/page/documents/details?targetId=CSI-Volume-Driver-v2_
 New features:
 1. Volume clone
 2. Volume snapshot and Restore
+
+## Nutanix CSI driver v2.1.0 documentation
+https://portal.nutanix.com/page/documents/details?targetId=CSI-Volume-Driver-v2_1:CSI-Volume-Driver-v2_1
+
+New feature:
+IP Address Whitelisting

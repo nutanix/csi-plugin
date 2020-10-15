@@ -49,7 +49,7 @@ spec:
         - name: socket-dir
           mountPath: /var/lib/csi/sockets/pluginproxy/
       - name: ntnx-csi-plugin
-        image: ntnx/ntnx-csi:v1.1.1
+        image: ntnx/ntnx-csi:v2.1.0
         securityContext:
           allowPrivilegeEscalation: true
           privileged: true
