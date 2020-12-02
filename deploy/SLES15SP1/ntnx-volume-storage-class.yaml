@@ -5,7 +5,7 @@ metadata:
 ### Uncomment the following two lines to make this the default storage class
 #    annotations:
 #      storageclass.kubernetes.io/is-default-class: "true"
-provisioner: com.nutanix.csi
+provisioner: csi.nutanix.com
 parameters:
 # provisioner-secret-name and provisioner-secret-namespace come from ntnx-secret.yaml
     csi.storage.k8s.io/provisioner-secret-name: ntnx-secret

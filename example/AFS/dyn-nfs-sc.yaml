@@ -1,0 +1,11 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+    name: nfs-sc
+provisioner: csi.nutanix.com
+parameters:
+    dynamicProv: ENABLED
+    nfsServerName: csi-nfs
+    csi.storage.k8s.io/provisioner-secret-name: ntnx-secret
+    csi.storage.k8s.io/provisioner-secret-namespace: kube-system
+    storageType: NutanixFiles

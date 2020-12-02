@@ -1,7 +1,7 @@
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-    name: acs-abs
+    name: lvm-sc
 provisioner: csi.nutanix.com
 parameters:
     csi.storage.k8s.io/provisioner-secret-name: ntnx-secret
@@ -14,7 +14,7 @@ parameters:
     dataServiceEndPoint: 10.5.65.156:3260
     storageContainer: default-container-30293
     storageType: NutanixVolumes
-    #whitelistIPMode: ENABLED
-    #chapAuth: ENABLED
+    isLVMVolume: "true"
+    numLVMDisks: "8"
 allowVolumeExpansion: true
 reclaimPolicy: Delete

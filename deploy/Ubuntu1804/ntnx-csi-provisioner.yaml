@@ -22,9 +22,8 @@ spec:
       serviceAccountName: csi-provisioner
       containers:
       - name: csi-provisioner
-        image: quay.io/k8scsi/csi-provisioner:v1.3.0
+        image: quay.io/k8scsi/csi-provisioner:v1.5.0
         args:
-        - --provisioner=com.nutanix.csi
         - --csi-address=$(ADDRESS)
         - --timeout=60s
         - --v=5
@@ -36,7 +35,7 @@ spec:
         - name: socket-dir
           mountPath: /var/lib/csi/sockets/pluginproxy/
       - name: csi-resizer
-        image: quay.io/k8scsi/csi-resizer:v0.2.0
+        image: quay.io/k8scsi/csi-resizer:v0.3.0
         args:
         - --v=5
         - --csi-address=$(ADDRESS)
@@ -48,12 +47,25 @@ spec:
         volumeMounts:
         - name: socket-dir
           mountPath: /var/lib/csi/sockets/pluginproxy/
+      - name: csi-snapshotter
+        image: quay.io/k8scsi/csi-snapshotter:v2.1.0
+        args:
+        - --csi-address=$(ADDRESS)
+        - --leader-election=false
+        - --logtostderr=true
+        env:
+        - name: ADDRESS
+          value: /csi/csi.sock
+        volumeMounts:
+        - name: socket-dir
+          mountPath: /csi
       - name: ntnx-csi-plugin
-        image: ntnx/ntnx-csi:v2.1.0
+        image: ntnx/ntnx-csi:v2.2.0
         securityContext:
           allowPrivilegeEscalation: true
           privileged: true
         args:
+        - --drivername=csi.nutanix.com
         - --endpoint=$(CSI_ENDPOINT)
         - --nodeid=$(NODE_ID)
         env:
