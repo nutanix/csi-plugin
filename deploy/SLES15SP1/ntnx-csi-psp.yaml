@@ -7,7 +7,7 @@ spec:
   allowPrivilegeEscalation: true
   allowedHostPaths:
   - pathPrefix: /var/lib/kubelet/plugins_registry/
-  - pathPrefix: /var/lib/kubelet/plugins/com.nutanix.csi/
+  - pathPrefix: /var/lib/kubelet/plugins/csi.nutanix.com/
   - pathPrefix: /var/lib/kubelet
   - pathPrefix: /dev
   - pathPrefix: /etc/iscsi
