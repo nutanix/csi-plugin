@@ -44,9 +44,8 @@ spec:
           securityContext:
             privileged: true
             allowPrivilegeEscalation: true
-          image: ntnx/ntnx-csi:v2.2.0
+          image: ntnx/ntnx-csi:v2.3.1
           args :
-            - "--drivername=csi.nutanix.com"
             - "--endpoint=$(CSI_ENDPOINT)"
             - "--nodeid=$(NODE_ID)"
           env:
@@ -56,6 +55,10 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
           volumeMounts:
             - name: plugin-dir
               mountPath: /csi
@@ -68,10 +71,8 @@ spec:
               name: device-dir
             - mountPath: /etc/iscsi
               name: iscsi-dir
-            - mountPath: /sbin/iscsiadm
-              name: iscsiadm
-            - mountPath: /lib/modules
-              name: lib-dir
+            - mountPath: /host
+              name: root-dir
           ports:
             - containerPort: 9808
               name: healthz
@@ -112,11 +113,7 @@ spec:
           hostPath:
             path: /etc/iscsi
             type: Directory
-        - name: iscsiadm
+        - name: root-dir
           hostPath:
-            path: /sbin/iscsiadm
-            type: File
-        - name: lib-dir
-          hostPath:
-            path: /lib/modules
+            path: /
             type: Directory
