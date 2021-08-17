@@ -1,8 +1,7 @@
-# Copyright 2019 Nutanix Inc
+# Copyright 2021 Nutanix Inc
 #
 # example usage: kubectl create -f <this_file>
 
----
 kind: DaemonSet
 apiVersion: apps/v1
 metadata:
@@ -21,11 +20,11 @@ spec:
       hostNetwork: true
       containers:
         - name: driver-registrar
-          image: quay.io/k8scsi/csi-node-driver-registrar:v1.2.0
+          image: k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.2.0
           args:
-            - "--v=5"
-            - "--csi-address=$(ADDRESS)"
-            - "--kubelet-registration-path=$(DRIVER_REG_SOCK_PATH)"
+            - --v=5
+            - --csi-address=$(ADDRESS)
+            - --kubelet-registration-path=$(DRIVER_REG_SOCK_PATH)
           env:
             - name: ADDRESS
               value: /csi/csi.sock
@@ -44,7 +43,7 @@ spec:
           securityContext:
             privileged: true
             allowPrivilegeEscalation: true
-          image: ntnx/ntnx-csi:v2.3.1
+          image: quay.io/karbon/ntnx-csi:v2.4.1
           args :
             - "--endpoint=$(CSI_ENDPOINT)"
             - "--nodeid=$(NODE_ID)"
@@ -75,12 +74,12 @@ spec:
               name: root-dir
           ports:
             - containerPort: 9808
-              name: healthz
+              name: http-endpoint
               protocol: TCP
           livenessProbe:
             httpGet:
               path: /healthz
-              port: healthz
+              port: http-endpoint
             initialDelaySeconds: 10
             timeoutSeconds: 3
             periodSeconds: 2
@@ -90,9 +89,10 @@ spec:
           volumeMounts:
             - mountPath: /csi
               name: plugin-dir
-          image: quay.io/k8scsi/livenessprobe:v1.1.0
+          image: k8s.gcr.io/sig-storage/livenessprobe:v2.3.0
           args:
             - --csi-address=/csi/csi.sock
+            - --http-endpoint=:9808
       volumes:
         - name: registration-dir
           hostPath:
