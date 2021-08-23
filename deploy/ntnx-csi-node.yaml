@@ -72,6 +72,8 @@ spec:
               name: iscsi-dir
             - mountPath: /host
               name: root-dir
+              # This is needed because mount is run from host using chroot.
+              mountPropagation: "Bidirectional"
           ports:
             - containerPort: 9808
               name: http-endpoint

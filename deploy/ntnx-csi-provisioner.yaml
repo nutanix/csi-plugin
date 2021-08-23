@@ -86,6 +86,9 @@ spec:
         volumeMounts:
         - mountPath: /var/lib/csi/sockets/pluginproxy/
           name: socket-dir
+        # This is needed for static NFS volume feature.
+        - mountPath: /host
+          name: root-dir
         ports:
         - containerPort: 9808
           name: http-endpoint
@@ -109,3 +112,7 @@ spec:
       volumes:
       - emptyDir: {}
         name: socket-dir
+      - hostPath:
+          path: /
+          type: Directory
+        name: root-dir
