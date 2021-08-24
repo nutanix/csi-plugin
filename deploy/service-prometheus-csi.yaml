@@ -1,0 +1,45 @@
+# Copyright 2021 Nutanix Inc
+# 
+# example usage: kubectl create -f <this_file>
+#
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: csi-metrics-service
+  namespace: kube-system
+  labels:
+    app: csi-provisioner-ntnx-plugin
+spec:
+  type: ClusterIP
+  selector:
+    app: csi-provisioner-ntnx-plugin
+  ports:
+    - name: provisioner
+      port: 9809
+      targetPort: 9809
+      protocol: TCP
+    - name: resizer
+      port: 9810
+      targetPort: 9810
+      protocol: TCP
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    # This should match the service monitor label configured
+    # on the prometheus.
+    k8s-app: csi-driver
+  name: csi-driver
+  namespace: kube-system
+spec:
+  endpoints:
+  - interval: 30s
+    port: provisioner
+  - interval: 30s
+    port: resizer
+  selector:
+    matchLabels:
+      app: csi-provisioner-ntnx-plugin
