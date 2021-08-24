@@ -7,6 +7,11 @@ the CSI driver.
 ## Important notice
 Please note that with v2.2.0, Nutanix CSI driver has changed format of driver name from com.nutanix.csi to csi.nutanix.com. All deployment yamls uses this new driver name format. However, if you are upgrading the CSI driver then you should continue to use old driver name com.nutanix.csi. Existing PVC/PV will not work with the new driver name. Please search and replace csi.nutanix.com to com.nutanix.csi before applying the new depoyment yamls.
 
+## Nutanix CSI driver v2.4.1 documentation
+https://portal.nutanix.com/page/documents/details?targetId=CSI-Volume-Driver-v2_4_1:CSI-Volume-Driver-v2_4_1
+
+This release brings in Volume metrics and CSI operations metrics support.
+
 ## Nutanix CSI driver v2.3.1 documentation
 https://portal.nutanix.com/page/documents/details?targetId=CSI-Volume-Driver-v2_3:CSI-Volume-Driver-v2_3
 
