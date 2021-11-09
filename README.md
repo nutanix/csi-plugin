@@ -4,6 +4,18 @@ This repository contains  Nutanix CSI driver deployment yamls for different OS
 and kubernetes distributions. The repository also contains example usage for
 the CSI driver.
 
+## Supported Kubernetes versions
+The following table details Kubernetes versions suitable for deployment of the Nutanix CSI driver.
+
+|Supported Kubernetes version |
+|----------------------|
+|Kubernetes v1.17|
+|Kubernetes v1.18|
+|Kubernetes v1.19|
+|Kubernetes v1.20|
+|Kubernetes v1.21|
+
+
 ## Important notice
 Please note that with v2.2.0, Nutanix CSI driver has changed format of driver name from com.nutanix.csi to csi.nutanix.com. All deployment yamls uses this new driver name format. However, if you are upgrading the CSI driver then you should continue to use old driver name com.nutanix.csi. Existing PVC/PV will not work with the new driver name. Please search and replace csi.nutanix.com to com.nutanix.csi before applying the new depoyment yamls.
 
