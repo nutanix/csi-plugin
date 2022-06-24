@@ -1,3 +1,7 @@
+# Deprecation warning !!
+This repository is no longer maintained. Nutanix CSI driver is now supported with helm based installation.
+Please head to https://github.com/nutanix/helm for more details and newer releases. 
+
 # csi-plugin
 
 This repository contains  Nutanix CSI driver deployment yamls for different OS
